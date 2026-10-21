@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { stageProducts } from '../scripts/import-supplier.mjs';
+const example={supplier_id:'coffee123',title_en:'Espresso Machine',title_pt:'Máquina de Espresso',category:'machines',supplier_url:'https://www.temu.com/item.html',purchase_cost_usd:'20.00',supplier_shipping_usd:'0.00',outbound_shipping_usd:'5.00',estimated_fees_usd:'1.00',returns_allowance_usd:'2.00'};
+test('authorized catalog rows always enter private draft',()=>{const [p]=stageProducts([example]);assert.equal(p.status,'DRAFT');assert.equal(p.purchasable,false);assert.equal(p.supplierAuthorized,false);assert.ok(p.minimumRetailCents>2*p.variableCostsCents)});
+test('reject unrelated categories',()=>assert.throws(()=>stageProducts([{...example,category:'electronics'}])));
+test('reject non-Temu and non-HTTPS links',()=>assert.throws(()=>stageProducts([{...example,supplier_url:'https://evil.example/product'}])));
+test('reject malformed money',()=>assert.throws(()=>stageProducts([{...example,purchase_cost_usd:'NaN'}])));
+test('reject duplicates',()=>assert.throws(()=>stageProducts([example,example])));
+test('reject incomplete pricing',()=>assert.throws(()=>stageProducts([{...example,outbound_shipping_usd:''}])));
