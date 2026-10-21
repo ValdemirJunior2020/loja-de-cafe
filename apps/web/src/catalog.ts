@@ -1,8 +1,11 @@
 export type Category='machines'|'grinders'|'accessories';
-export type Product={id:string;category:Category;name:{en:string;pt:string};description:{en:string;pt:string};priceCents:number;emoji:string;status:'DEMO_ONLY'};
-// Synthetic examples: no Temu pricing, inventory, images, or reviews represented as real.
+export type Product={id:string;category:Category;name:{en:string;pt:string};description:{en:string;pt:string};referencePriceCents:number;emoji:string;supplier:string;supplierUrl:string;status:'REVIEW_REQUIRED'};
+/** Real external supplier listings observed October 21 2026. Reference prices are not storefront retail prices.
+ * Listing content is summarized; original merchant photos are intentionally not copied.
+ * Resale suitability, availability, shipping, fees, electrical compliance and margins have NOT been approved. */
 export const catalog:Product[]=[
-{id:'demo-espresso',category:'machines',name:{en:'Espresso Machine Concept',pt:'Conceito de Máquina de Espresso'},description:{en:'Compact countertop espresso system',pt:'Máquina compacta de espresso'},priceCents:17900,emoji:'☕',status:'DEMO_ONLY'},
-{id:'demo-drip',category:'machines',name:{en:'Drip Brewer Concept',pt:'Conceito de Cafeteira Elétrica'},description:{en:'Easy everyday filter coffee',pt:'Café coado para o dia a dia'},priceCents:8900,emoji:'🫖',status:'DEMO_ONLY'},
-{id:'demo-grinder',category:'grinders',name:{en:'Coffee Grinder Concept',pt:'Conceito de Moedor de Café'},description:{en:'Consistent grind size for every brew',pt:'Moagem consistente para cada preparo'},priceCents:7900,emoji:'⚙️',status:'DEMO_ONLY'},
-{id:'demo-tamper',category:'accessories',name:{en:'Barista Tools Concept',pt:'Conceito de Acessórios Barista'},description:{en:'Tools for home espresso preparation',pt:'Acessórios para preparar espresso em casa'},priceCents:3900,emoji:'🥄',status:'DEMO_ONLY'}];
+{id:'target-bodum-silver',category:'accessories',name:{en:'Bodum Schiuma Stainless Steel Milk Frother',pt:'Espumador de Leite Bodum Schiuma Inox'},description:{en:'Battery-operated handheld milk frother; requires two AA batteries.',pt:'Espumador de leite portátil a pilhas; usa duas pilhas AA.'},referencePriceCents:1499,emoji:'🥛',supplier:'Target',supplierUrl:'https://www.target.com/p/-/A-82551556',status:'REVIEW_REQUIRED'},
+{id:'target-bodum-black',category:'accessories',name:{en:'Bodum Schiuma Black Milk Frother',pt:'Espumador de Leite Bodum Schiuma Preto'},description:{en:'Compact handheld frother; batteries not included.',pt:'Espumador de leite portátil compacto; pilhas não incluídas.'},referencePriceCents:999,emoji:'☕',supplier:'Target',supplierUrl:'https://www.target.com/p/-/A-21561851',status:'REVIEW_REQUIRED'},
+{id:'target-bodum-recharge',category:'accessories',name:{en:'Bodum Schiuma Rechargeable Frother',pt:'Espumador Bodum Schiuma Recarregável'},description:{en:'USB rechargeable handheld milk frother.',pt:'Espumador portátil recarregável via USB.'},referencePriceCents:1499,emoji:'🥤',supplier:'Target',supplierUrl:'https://www.target.com/p/-/A-94682102',status:'REVIEW_REQUIRED'},
+{id:'walmart-hb-12',category:'machines',name:{en:'Hamilton Beach 12-Cup Programmable Coffee Maker',pt:'Cafeteira Programável Hamilton Beach de 12 Xícaras'},description:{en:'Glass-carafe programmable drip coffee maker, matte black.',pt:'Cafeteira elétrica programável com jarra de vidro, preta fosca.'},referencePriceCents:3799,emoji:'🫖',supplier:'Walmart',supplierUrl:'https://www.walmart.com/ip/19591400383',status:'REVIEW_REQUIRED'}
+];
