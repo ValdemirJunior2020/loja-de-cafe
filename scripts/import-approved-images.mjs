@@ -1,5 +1,5 @@
 import {readFile,copyFile,mkdir,writeFile} from 'node:fs/promises';
-import {resolve,extname,basename,join} from 'node:path';
+import {resolve,extname,join,sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
 const target=join(root,'apps/web/public/images/approved');
@@ -13,7 +13,7 @@ export async function stageImageManifest(input,baseDir){
  if(p.commercialReuseAuthorized!==true||!p.rightsHolder||!p.permissionEvidence)throw Error('Commercial image rights not verified for '+p.productId);
  if(!/^[-\w. /]{3,200}$/.test(p.permissionEvidence))throw Error('Invalid permission reference');
  const f=safeFile(p.file);const ext=extname(f).toLowerCase();if(!['.jpg','.jpeg','.png','.webp'].includes(ext))throw Error('Only jpg png webp supported');
- const full=resolve(baseDir,f);if(!full.startsWith(resolve(baseDir)+'/'))throw Error('Image outside source folder');
+ const full=resolve(baseDir,f);if(!full.startsWith(resolve(baseDir)+sep))throw Error('Image outside source folder');
  seen.add(p.productId);out.push({productId:p.productId,source:full,target:join(target,p.productId+ext),publicPath:'/images/approved/'+p.productId+ext,rightsHolder:p.rightsHolder,permissionEvidence:p.permissionEvidence});
  }
  return out;
