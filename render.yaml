@@ -1,0 +1,15 @@
+# Optional Render Blueprint. Deploy only the safe preview API until production gates pass.
+services:
+  - type: web
+    name: loja-de-cafe-api
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm run api:check
+    startCommand: npm run api:start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        sync: false

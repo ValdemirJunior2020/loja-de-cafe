@@ -1,0 +1,21 @@
+{
+  "name": "loja-de-cafe",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/web",
+    "build": "npm run build -w apps/web",
+    "typecheck": "npm run typecheck -w apps/web && npm run api:check",
+    "start:api": "npm run start -w apps/api",
+    "test": "node --test tests/*.test.mjs",
+    "api:start": "node apps/api/src/server.mjs",
+    "api:check": "node --check apps/api/src/server.mjs"
+  }
+}

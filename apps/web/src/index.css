@@ -1,0 +1,3 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+@tailwind base;@tailwind components;@tailwind utilities;
+:root{font-family:'DM Sans',sans-serif;color:#243127;background:#fcf8f2}*{box-sizing:border-box}h1,h2,h3{font-family:'Playfair Display',serif}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #9b6d3a;outline-offset:3px}.product-img{height:200px;display:grid;place-items:center;background:linear-gradient(130deg,#e4ded0,#f5eee3);font-size:74px}.field{border:1px solid #c8c7be;padding:10px 12px;border-radius:8px;background:white}
